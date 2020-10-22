@@ -18,7 +18,7 @@ class Node:
         return ret
 
 
-class BinarySortTree:
+class BinarySearchTree:
 
     def __init__(self, array=None):
         self.root = None
@@ -50,11 +50,11 @@ class BinarySortTree:
             yield from cls._traversals(node.r_child, 'in')
         elif _type == 'pre':
             yield node.value
-            yield from cls._traversals(node.l_child, 'in')
-            yield from cls._traversals(node.r_child, 'in')
+            yield from cls._traversals(node.l_child, 'pre')
+            yield from cls._traversals(node.r_child, 'pre')
         elif _type == 'post':
-            yield from cls._traversals(node.l_child, 'in')
-            yield from cls._traversals(node.r_child, 'in')
+            yield from cls._traversals(node.l_child, 'post')
+            yield from cls._traversals(node.r_child, 'post')
             yield node.value
 
     def to_list(self, _type='in'):
@@ -114,7 +114,8 @@ class BinarySortTree:
 
 
 if __name__ == '__main__':
-    bst = BinarySortTree([3, 2, 5, 4, 8, 7, 9, 1, 2])
+    bst = BinarySearchTree([3, 2, 5, 4, 8, 7, 9, 1, 2])
+    print(bst.root)
     print(bst.to_list())
     print(bst.query(6))
     print(bst.query(5))
