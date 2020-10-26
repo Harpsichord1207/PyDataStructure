@@ -27,6 +27,17 @@ class BinarySearchTree:
                 self.insert(value)
 
     @classmethod
+    def _get_height(cls, node):
+        if node is None:
+            return 0
+        if node.l_child is None and node.r_child is None:
+            return 1
+        return 1 + max(cls._get_height(node.l_child), cls._get_height(node.r_child))
+
+    def get_height(self):
+        return self._get_height(self.root)
+
+    @classmethod
     def _query(cls, node, value):
         if node is None:
             return False
